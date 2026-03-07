@@ -1,44 +1,57 @@
-/* Basic Reset */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  color: #333;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    background-color: #f4f7f6;
+    color: #333;
 }
 
-/* Nav Bar Styling */
 nav {
-  background: #2c3e50;
-  padding: 10px;
-  position: sticky;
-  top: 0;
+    background: #232931;
+    color: white;
+    padding: 1rem;
 }
 
 nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  margin: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
 }
 
-nav ul li {
-  margin: 0 15px;
-}
+nav li { margin: 0 20px; }
 
 nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+    color: #eeeeee;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-/* Section Spacing */
-section {
-  padding: 60px 0;
-  border-bottom: 1px solid #eee;
+nav a:hover, .active {
+    color: #4ecca3; /* A nice engineering green */
 }
 
-h2 {
-  color: #2c3e50;
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.project-card {
+    border-left: 5px solid #4ecca3;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    background: #fafafa;
+}
+
+.btn {
+    display: inline-block;
+    background: #232931;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
 }
