@@ -1,36 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Projects | Joel Bhattarai</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Projects | Joel Bhattarai</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="index.html">About</a></li>
+            <li><a href="projects.html" class="active">Projects</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="resume.html">Resume</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-
-  <main>
-    <h1>My Engineering Projects</h1>
-    
-    <section>
-      <h2>Rover Project</h2>
-      <p>Detailed description of the mechanical assembly and sensor integration...</p>
-    </section>
-
-    <section>
-      <h2>FEA Convergence Study</h2>
-      <p>Analysis of stress concentrations in a cantilever beam using the following relation for error estimation:</p>
-      <p>$$e = \frac{|u_{exact} - u_{approx}|}{|u_{exact}|}$$</p>
-    </section>
-  </main>
-
+    <main>
+        <h1>Engineering Projects</h1>
+        <div class="project-card">
+            <h3>Rover Project</h3>
+            <p>Integrated sensor arrays and custom chassis design for autonomous navigation.</p>
+        </div>
+        <div class="project-card">
+            <h3>FEA Convergence Study</h3>
+            <p>Detailed analysis using $h$-refinement to verify stress accuracy.</p>
+        </div>
+    </main>
 </body>
 </html>
