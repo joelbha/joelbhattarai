@@ -1,15 +1,32 @@
+/* General Styles */
 body {
     font-family: 'Inter', sans-serif;
     margin: 0;
     line-height: 1.6;
     background-color: #f4f7f6;
     color: #333;
+    /* Pushes content down so it's not hidden under the fixed nav */
+    padding-top: 100px; 
 }
 
+/* Header/Navigation - The "Big" State */
 nav {
     background: #232931;
     color: white;
-    padding: 1rem;
+    padding: 35px 1rem; /* Initial tall padding */
+    position: fixed;    /* Keeps it at the top */
+    top: 0;
+    width: 100%;
+    z-index: 1000;      /* Keeps it above the main content */
+    transition: all 0.4s ease; /* Smoothly animates the shrink */
+    box-sizing: border-box;    /* Ensures padding doesn't break width */
+}
+
+/* The "Small" State - Triggered by script.js */
+nav.shrunk {
+    padding: 10px 1rem; 
+    background: rgba(35, 41, 49, 0.98); /* Slightly transparent */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 nav ul {
@@ -17,20 +34,25 @@ nav ul {
     display: flex;
     justify-content: center;
     padding: 0;
+    margin: 0;
 }
 
-nav li { margin: 0 20px; }
+nav li { 
+    margin: 0 20px; 
+}
 
 nav a {
     color: #eeeeee;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s;
 }
 
 nav a:hover, .active {
     color: #4ecca3; /* A nice engineering green */
 }
 
+/* Main Content Area */
 main {
     max-width: 900px;
     margin: 40px auto;
