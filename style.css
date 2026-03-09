@@ -1,79 +1,96 @@
-/* General Styles */
 body {
     font-family: 'Inter', sans-serif;
     margin: 0;
     line-height: 1.6;
     background-color: #f4f7f6;
     color: #333;
-    /* Pushes content down so it's not hidden under the fixed nav */
-    padding-top: 100px; 
+    padding-top: 140px; /* Space for the extra-tall header */
 }
 
 /* Header/Navigation - The "Big" State */
 nav {
     background: #232931;
     color: white;
-    padding: 35px 1rem; /* Initial tall padding */
-    position: fixed;    /* Keeps it at the top */
+    padding: 40px 2rem; /* Much taller starting point */
+    position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;      /* Keeps it above the main content */
-    transition: all 0.4s ease; /* Smoothly animates the shrink */
-    box-sizing: border-box;    /* Ensures padding doesn't break width */
+    z-index: 1000;
+    transition: all 0.4s ease-in-out;
+    box-sizing: border-box;
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* Name on left, links on right */
+    align-items: center;
+}
+
+.branding {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-pic {
+    width: 60px; /* Big photo at first */
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #4ecca3;
+    transition: all 0.4s ease;
+    object-fit: cover;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: all 0.4s ease;
 }
 
 /* The "Small" State - Triggered by script.js */
 nav.shrunk {
-    padding: 10px 1rem; 
-    background: rgba(35, 41, 49, 0.98); /* Slightly transparent */
+    padding: 10px 2rem; 
+    background: rgba(35, 41, 49, 0.98);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
+nav.shrunk .profile-pic {
+    width: 35px; /* Photo shrinks */
+    height: 35px;
+}
+
+nav.shrunk .logo-text {
+    font-size: 1.1rem; /* Text shrinks */
+}
+
+/* Menu Links */
 nav ul {
     list-style: none;
     display: flex;
-    justify-content: center;
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 
-nav li { 
-    margin: 0 20px; 
-}
+nav li { margin-left: 30px; }
 
 nav a {
     color: #eeeeee;
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s;
 }
 
 nav a:hover, .active {
-    color: #4ecca3; /* A nice engineering green */
+    color: #4ecca3;
 }
 
 /* Main Content Area */
 main {
     max-width: 900px;
     margin: 40px auto;
-    padding: 20px;
+    padding: 40px;
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.project-card {
-    border-left: 5px solid #4ecca3;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    background: #fafafa;
-}
-
-.btn {
-    display: inline-block;
-    background: #232931;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
 }
