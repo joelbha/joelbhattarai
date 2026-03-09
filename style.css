@@ -57,8 +57,8 @@ nav.shrunk {
 }
 
 nav.shrunk .profile-pic {
-    width: 35px; /* Photo shrinks */
-    height: 35px;
+    width: 70px; /* Photo shrinks */
+    height: 70px;
 }
 
 nav.shrunk .logo-text {
