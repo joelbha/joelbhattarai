@@ -4,10 +4,10 @@ body {
     line-height: 1.6;
     background-color: #f4f7f6;
     color: #333;
-    padding-top: 160px; /* Adjusted to prevent content cutoff */
+    padding-top: 160px; 
 }
 
-/* Header/Navigation - The "Big" State */
+
 nav {
     background: #232931;
     color: white;
@@ -38,7 +38,7 @@ nav {
     width: 90px;
     height: 90px;
     border-radius: 50%;
-    border: none; /* Fixed the syntax here */
+    border: none; 
     transition: all 0.4s ease;
     object-fit: cover;
 }
@@ -49,7 +49,7 @@ nav {
     transition: all 0.4s ease;
 }
 
-/* The "Small" State - Triggered by script.js */
+
 nav.shrunk {
     padding: 10px 2rem;  
     background: rgba(35, 41, 49, 0.98);
@@ -85,7 +85,6 @@ nav a:hover, .active {
     color: #4ecca3;
 }
 
-/* Main Content Area */
 main {
     max-width: 900px;
     margin: 40px auto;
@@ -95,14 +94,14 @@ main {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* --- NEW BUTTON STYLES --- */
+
 .btn {
     display: inline-block;
-    background-color: #4ecca3; /* Your signature green */
-    color: #232931;           /* Dark text for contrast */
+    background-color: #4ecca3; 
+    color: #232931;           
     padding: 12px 28px;
     text-decoration: none;
-    border-radius: 50px;      /* Rounded "Pill" shape */
+    border-radius: 50px;      
     font-weight: bold;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(78, 204, 163, 0.3);
@@ -111,8 +110,8 @@ main {
 }
 
 .btn:hover {
-    background-color: #45b691; /* Darker green on hover */
-    transform: translateY(-3px); /* Lifts up slightly */
+    background-color: #45b691; 
+    transform: translateY(-3px); 
     box-shadow: 0 6px 20px rgba(78, 204, 163, 0.4);
     color: #ffffff;
 }
@@ -121,15 +120,15 @@ main {
     transform: translateY(-1px);
 }
 .pdf-container {
-    margin-top: 50px;       /* This is the gap you wanted! */
-    margin-bottom: 30px;    /* Space at the very bottom of the page */
-    border: 1px solid #ccc; /* A light border to define the viewer */
-    border-radius: 8px;     /* Rounds the corners to match your cards */
-    overflow: hidden;       /* Ensures the PDF doesn't "leak" out of the rounded corners */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Adds a nice depth effect */
+    margin-top: 30px;      
+    margin-bottom: 30px;   
+    border: 1px solid #ccc; 
+    border-radius: 8px;   
+    overflow: hidden;      
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
 }
 
-/* This makes sure the actual viewer fills the container */
+
 .pdf-container iframe {
     display: block;
     border: none;
