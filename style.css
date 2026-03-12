@@ -4,14 +4,14 @@ body {
     line-height: 1.6;
     background-color: #f4f7f6;
     color: #333;
-    padding-top: 140px; /* Space for the extra-tall header */
+    padding-top: 160px; /* Adjusted to prevent content cutoff */
 }
 
 /* Header/Navigation - The "Big" State */
 nav {
     background: #232931;
     color: white;
-    padding: 40px 2rem; /* Much taller starting point */
+    padding: 40px 2rem; 
     position: fixed;
     top: 0;
     width: 100%;
@@ -24,7 +24,7 @@ nav {
     max-width: 1100px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between; /* Name on left, links on right */
+    justify-content: space-between; 
     align-items: center;
 }
 
@@ -35,10 +35,10 @@ nav {
 }
 
 .profile-pic {
-    width: 90px; /* Big photo at first */
+    width: 90px;
     height: 90px;
     border-radius: 50%;
-    border: none #4ecca3;
+    border: none; /* Fixed the syntax here */
     transition: all 0.4s ease;
     object-fit: cover;
 }
@@ -51,18 +51,18 @@ nav {
 
 /* The "Small" State - Triggered by script.js */
 nav.shrunk {
-    padding: 10px 2rem; 
+    padding: 10px 2rem;  
     background: rgba(35, 41, 49, 0.98);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 nav.shrunk .profile-pic {
-    width: 35px; /* Photo shrinks */
-    height: 35px;
+    width: 45px; 
+    height: 45px;
 }
 
 nav.shrunk .logo-text {
-    font-size: 1.1rem; /* Text shrinks */
+    font-size: 1.1rem; 
 }
 
 /* Menu Links */
@@ -93,4 +93,30 @@ main {
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* --- NEW BUTTON STYLES --- */
+.btn {
+    display: inline-block;
+    background-color: #4ecca3; /* Your signature green */
+    color: #232931;           /* Dark text for contrast */
+    padding: 12px 28px;
+    text-decoration: none;
+    border-radius: 50px;      /* Rounded "Pill" shape */
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(78, 204, 163, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #45b691; /* Darker green on hover */
+    transform: translateY(-3px); /* Lifts up slightly */
+    box-shadow: 0 6px 20px rgba(78, 204, 163, 0.4);
+    color: #ffffff;
+}
+
+.btn:active {
+    transform: translateY(-1px);
 }
