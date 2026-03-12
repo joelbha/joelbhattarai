@@ -120,3 +120,17 @@ main {
 .btn:active {
     transform: translateY(-1px);
 }
+.pdf-container {
+    margin-top: 50px;       /* This is the gap you wanted! */
+    margin-bottom: 30px;    /* Space at the very bottom of the page */
+    border: 1px solid #ccc; /* A light border to define the viewer */
+    border-radius: 8px;     /* Rounds the corners to match your cards */
+    overflow: hidden;       /* Ensures the PDF doesn't "leak" out of the rounded corners */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Adds a nice depth effect */
+}
+
+/* This makes sure the actual viewer fills the container */
+.pdf-container iframe {
+    display: block;
+    border: none;
+}
