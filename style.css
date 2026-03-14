@@ -158,9 +158,8 @@ main {
 .project-card {
     display: flex;
     align-items: center;
-    /* This pushes the two halves apart to the edges of the container */
     justify-content: space-between; 
-    gap: 60px; 
+    gap: 40px; 
     margin-bottom: 150px; 
     width: 100%;
 }
@@ -190,7 +189,7 @@ main {
 }
 
 .project-content {
-    flex: 1;
+    flex: 0 0 500px;
     max-width: 500px;
     /* This ensures the text always starts at the left edge of its half */
     text-align: left; 
