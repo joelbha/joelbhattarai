@@ -135,10 +135,10 @@ main {
 }
 
 .projects-wide {
-    max-width: 95% !important; 
-    width: 95% !important;
+    max-width: 90% !important; 
+    width: 90% !important;
     margin: 40px auto !important; 
-    padding: 80px 5% !important; 
+    padding: 60px 40px !important; 
     background: white !important;
     border-radius: 12px !important;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
