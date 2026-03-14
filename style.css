@@ -146,29 +146,6 @@ main {
     box-sizing: border-box;
 }
 
-.project-card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 100px; 
-    margin-bottom: 150px; 
-    width: 100%;
-}
-
-.project-card:nth-child(even) {
-    flex-direction: row-reverse;
-}
-
-.project-image {
-    flex: 1.2; 
-    max-width: 650px;
-}
-
-.project-content {
-    flex: 1;
-    max-width: 550px;
-}
-
 .projects-header {
     display: flex;
     flex-direction: column;
@@ -178,12 +155,55 @@ main {
     width: 100%;
 }
 
+.project-card {
+    display: flex;
+    align-items: center;
+    /* This pushes the two halves apart to the edges of the container */
+    justify-content: space-between; 
+    gap: 60px; 
+    margin-bottom: 150px; 
+    width: 100%;
+}
+
+.project-card:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.project-image {
+    flex: 1; 
+    max-width: 550px;
+    display: flex;
+    /* Forces image to stay on the outer left/right edge */
+    justify-content: flex-start; 
+}
+
+/* For even rows, we want the image to hug the right edge */
+.project-card:nth-child(even) .project-image {
+    justify-content: flex-end;
+}
+
+.project-image img, .project-image video {
+    width: 100%;
+    height: 400px;
+    object-fit: contain; /* Best for "Coming Soon" graphics to prevent cropping */
+    border-radius: 15px;
+}
+
+.project-content {
+    flex: 1;
+    max-width: 500px;
+    /* This ensures the text always starts at the left edge of its half */
+    text-align: left; 
+}
+
+/* Mobile Responsive Fix */
 @media (max-width: 900px) {
     .project-card, .project-card:nth-child(even) {
         flex-direction: column;
         text-align: center;
+        gap: 30px;
     }
     .project-image {
-        max-width: 100%;
+        justify-content: center !important;
     }
 }
