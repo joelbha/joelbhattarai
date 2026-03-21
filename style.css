@@ -155,7 +155,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center; 
-    gap: 150px; 
+    gap: 60px; /* Reduced from 150px to pull content together */
     margin-bottom: 200px; 
     width: 100%;
 }
@@ -165,8 +165,8 @@ main {
 }
 
 .project-image {
-    flex: 1.2; 
-    max-width: 650px;
+    flex: 1; 
+    max-width: 600px; /* Adjusted to balance the gap */
     display: flex;
     justify-content: flex-start; 
 }
@@ -192,7 +192,7 @@ main {
 
 .project-content {
     flex: 1;
-    max-width: 550px;
+    max-width: 600px; /* Increased so text spans more area and closes the gap */
     text-align: left; 
 }
 
