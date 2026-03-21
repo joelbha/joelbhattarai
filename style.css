@@ -73,6 +73,19 @@ nav a:hover, .active {
     color: #4ecca3;
 }
 
+/* --- 1. BASE MAIN (Restores About, Resume, Contact) --- */
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-sizing: border-box; /* Ensures padding doesn't break width */
+}
+
+/* --- 2. PROJECTS ONLY OVERRIDES (Keeps Projects Unchanged) --- */
+/* The !important tags here ensure your project page remains wide */
 .projects-wide {
     max-width: 95% !important; 
     width: 95% !important;
@@ -81,7 +94,7 @@ nav a:hover, .active {
     background: white !important;
     border-radius: 12px !important;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
-    box-sizing: border-box;
+    display: block !important;
 }
 
 .projects-header {
@@ -115,28 +128,26 @@ nav a:hover, .active {
     width: 100%;
 }
 
-/* --- Fixed Height for All Media Containers --- */
+/* --- Media Frame Styles --- */
 .project-image img, 
 .project-image video,
 .project-image figure img,
 .project-image figure video {
     width: 100%;
-    height: 350px;       /* Keeps the project rows consistent */
+    height: 350px;
     border-radius: 15px;
     display: block;
-    object-fit: contain; /* Prevents stretching */
+    object-fit: contain; 
 }
 
-/* --- Specific Style for Images (No Black Bars) --- */
 .project-image img, 
 .project-image figure img {
-    background: transparent; /* Makes the 'bars' the same color as the card */
+    background: transparent; 
 }
 
-/* --- Specific Style for Videos (Keep Black Bars) --- */
 .project-image video,
 .project-image figure video {
-    background: #000; /* Maintains the cinematic look for vertical/odd videos */
+    background: #000; 
 }
 
 .project-content {
