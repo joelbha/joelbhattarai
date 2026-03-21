@@ -134,7 +134,7 @@ main {
     max-width: 95% !important; 
     width: 95% !important;
     margin: 40px auto !important; 
-    padding: 80px 5% !important; 
+    padding: 80px 10% !important; 
     background: white !important;
     border-radius: 12px !important;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
@@ -164,12 +164,10 @@ main {
 }
 
 .project-image {
-    flex: 0 0 45%; 
+    flex: 0 0 50%; 
+    max-width: 550px;
     display: flex;
-}
-
-.project-card:nth-child(even) .project-image {
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .project-image img, 
@@ -189,14 +187,14 @@ main {
 }
 
 .project-content {
-    flex: 0 0 45%;
-    max-width: 500px
+    flex: 0 0 35%; 
+    max-width: 350px; /* Forces the text to stack more vertically */
     text-align: left; 
 }
 
 @media (max-width: 1100px) {
-    .project-card {
-        gap: 50px;
+    .project-content {
+        flex: 0 0 40%;
     }
 }
 
