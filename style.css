@@ -115,17 +115,28 @@ nav a:hover, .active {
     width: 100%;
 }
 
-/* This creates the uniform frame for images and videos */
+/* --- Fixed Height for All Media Containers --- */
 .project-image img, 
 .project-image video,
 .project-image figure img,
 .project-image figure video {
     width: 100%;
-    height: 350px;       /* Fixed height for all media */
-    background: #000;    /* Creates the black bars for vertical videos */
+    height: 350px;       /* Keeps the project rows consistent */
     border-radius: 15px;
     display: block;
-    object-fit: contain; /* Keeps content proportional inside the 350px box */
+    object-fit: contain; /* Prevents stretching */
+}
+
+/* --- Specific Style for Images (No Black Bars) --- */
+.project-image img, 
+.project-image figure img {
+    background: transparent; /* Makes the 'bars' the same color as the card */
+}
+
+/* --- Specific Style for Videos (Keep Black Bars) --- */
+.project-image video,
+.project-image figure video {
+    background: #000; /* Maintains the cinematic look for vertical/odd videos */
 }
 
 .project-content {
@@ -151,6 +162,13 @@ nav a:hover, .active {
     border-radius: 50px;      
     font-weight: bold;
     margin-top: 15px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #45b691; 
+    transform: translateY(-3px); 
+    color: #ffffff;
 }
 
 @media (max-width: 900px) {
@@ -158,6 +176,7 @@ nav a:hover, .active {
         flex-direction: column;
         text-align: center;
         gap: 40px;
+        margin-bottom: 100px;
     }
     .project-image, .project-content {
         max-width: 100%;
