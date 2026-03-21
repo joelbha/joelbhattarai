@@ -155,7 +155,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center; 
-    gap: 60px; /* Reduced from 150px to pull content together */
+    gap: 60px; 
     margin-bottom: 200px; 
     width: 100%;
 }
@@ -166,7 +166,7 @@ main {
 
 .project-image {
     flex: 1; 
-    max-width: 600px; /* Adjusted to balance the gap */
+    max-width: 600px;
     display: flex;
     justify-content: flex-start; 
 }
@@ -188,11 +188,12 @@ main {
 
 .project-image video {
     background: #000;
+    height: 350px; 
 }
 
 .project-content {
     flex: 1;
-    max-width: 600px; /* Increased so text spans more area and closes the gap */
+    max-width: 600px;
     text-align: left; 
 }
 
