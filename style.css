@@ -38,7 +38,6 @@ nav {
     height: 90px;
     border-radius: 50%;
     object-fit: cover;
-    transition: all 0.4s ease;
 }
 
 .logo-text {
@@ -107,7 +106,6 @@ nav a:hover, .active {
     max-width: 550px;
 }
 
-/* Reset figure margins and center content */
 .project-image figure {
     margin: 0;
     padding: 0;
@@ -117,28 +115,22 @@ nav a:hover, .active {
     width: 100%;
 }
 
-/* Updated selector to find media inside figures */
+/* This creates the uniform frame for images and videos */
 .project-image img, 
 .project-image video,
 .project-image figure img,
 .project-image figure video {
     width: 100%;
-    height: auto;
-    max-height: 450px;
-    object-fit: contain; 
+    height: 350px;       /* Fixed height for all media */
+    background: #000;    /* Creates the black bars for vertical videos */
     border-radius: 15px;
     display: block;
-}
-
-.project-image video,
-.project-image figure video {
-    background: #000;
-    height: 350px; 
+    object-fit: contain; /* Keeps content proportional inside the 350px box */
 }
 
 .project-content {
     flex: 0 0 40%; 
-    max-width: 400px; /* Toy with this for 'stackedness' */
+    max-width: 400px; 
     text-align: left; 
 }
 
