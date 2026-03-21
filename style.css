@@ -141,8 +141,11 @@ nav a:hover, .active {
 
 .project-content {
     flex: 0 0 40%; 
-    max-width: 400px; 
+    max-width: 500px; 
     text-align: left; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .project-image figcaption {
