@@ -154,8 +154,7 @@ main {
 .project-card {
     display: flex;
     align-items: center;
-    justify-content: center; 
-    gap: 100px; 
+    justify-content: space-between; 
     margin-bottom: 200px; 
     width: 100%;
 }
@@ -165,9 +164,8 @@ main {
 }
 
 .project-image {
-    flex: 0 1 450px; 
+    flex: 0 0 45%; 
     display: flex;
-    justify-content: flex-start; 
 }
 
 .project-card:nth-child(even) .project-image {
@@ -191,7 +189,8 @@ main {
 }
 
 .project-content {
-    flex: 0 1 450px;
+    flex: 0 0 45%;
+    max-width: 500px
     text-align: left; 
 }
 
