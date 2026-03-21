@@ -134,7 +134,7 @@ main {
     max-width: 95% !important; 
     width: 95% !important;
     margin: 40px auto !important; 
-    padding: 80px 10% !important; 
+    padding: 60px 10% !important; 
     background: white !important;
     border-radius: 12px !important;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
@@ -147,7 +147,7 @@ main {
     flex-direction: column;
     align-items: center;    
     text-align: center;     
-    margin-bottom: 100px;
+    margin-bottom: 30px; 
     width: 100%;
 }
 
@@ -155,7 +155,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between; 
-    margin-bottom: 200px; 
+    margin-bottom: 180px; 
     width: 100%;
 }
 
@@ -187,14 +187,14 @@ main {
 }
 
 .project-content {
-    flex: 0 0 35%; 
-    max-width: 350px; /* Forces the text to stack more vertically */
+    flex: 0 0 40%; 
+    max-width: 400px; 
     text-align: left; 
 }
 
 @media (max-width: 1100px) {
     .project-content {
-        flex: 0 0 40%;
+        flex: 0 0 45%;
     }
 }
 
