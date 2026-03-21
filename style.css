@@ -177,6 +177,7 @@ main {
     border-radius: 50px;      
     font-weight: bold;
     margin-top: 15px;
+    margin-bottom:15px;
     transition: all 0.3s ease;
 }
 
