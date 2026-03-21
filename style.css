@@ -146,6 +146,7 @@ nav a:hover, .active {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
 }
 
 .project-image figcaption {
