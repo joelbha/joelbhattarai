@@ -131,10 +131,10 @@ main {
 }
 
 .projects-wide {
-    max-width: 1000px !important; 
-    width: 90% !important;
+    max-width: 95% !important; 
+    width: 95% !important;
     margin: 40px auto !important; 
-    padding: 60px 40px !important; 
+    padding: 80px 5% !important; 
     background: white !important;
     border-radius: 12px !important;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
@@ -147,7 +147,7 @@ main {
     flex-direction: column;
     align-items: center;    
     text-align: center;     
-    margin-bottom: 80px;
+    margin-bottom: 100px;
     width: 100%;
 }
 
@@ -155,8 +155,8 @@ main {
     display: flex;
     align-items: center;
     justify-content: center; 
-    gap: 60px; 
-    margin-bottom: 150px; 
+    gap: 150px; 
+    margin-bottom: 200px; 
     width: 100%;
 }
 
@@ -165,8 +165,8 @@ main {
 }
 
 .project-image {
-    flex: 1; 
-    max-width: 550px;
+    flex: 1.2; 
+    max-width: 650px;
     display: flex;
     justify-content: flex-start; 
 }
@@ -179,7 +179,7 @@ main {
 .project-image video {
     width: 100%;
     height: auto;
-    max-height: 400px;
+    max-height: 450px;
     object-fit: contain; 
     border-radius: 15px;
     background: transparent;
@@ -191,8 +191,8 @@ main {
 }
 
 .project-content {
-    flex: 0 0 500px;
-    max-width: 500px;
+    flex: 1;
+    max-width: 550px;
     text-align: left; 
 }
 
@@ -200,13 +200,14 @@ main {
     .project-card, .project-card:nth-child(even) {
         flex-direction: column;
         text-align: center;
-        gap: 30px;
+        gap: 50px;
+        margin-bottom: 100px;
     }
     .project-image {
         justify-content: center !important;
+        max-width: 100%;
     }
     .project-content {
-        flex: 1;
         max-width: 100%;
     }
 }
