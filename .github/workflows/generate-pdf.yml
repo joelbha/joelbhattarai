@@ -12,18 +12,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Wait for Pages to be ready
-        run: sleep 30
+      # This gives your custom domain plenty of time to "wake up"
+      - name: Wait for DNS
+        run: sleep 60
 
-      - name: HTML to PDF
-        uses: misaelnieto/web_to_pdf_action@master
+      - name: Generate PDF
+        uses: fershad/web-to-pdf-action@v1
         with:
-          # Using the URLs you confirmed are working
-          webPageURL: "https://joelbhattarai.com/index.html https://joelbhattarai.com/projects.html https://joelbhattarai.com/documents.html https://joelbhattarai.com/contact.html"
-          outputFile: portfolio.pdf
-          usePuppeteer: true
-          # This helps prevent the 404/Timeout errors
-          pdfOptions: '{"timeout": 60000, "waitUntil": "networkidle0"}'
+          # Use the URLs that YOU confirmed work in your browser
+          url: "https://joelbhattarai.com/index.html"
+          output: "portfolio.pdf"
 
       - name: Commit and Push PDF
         run: |
