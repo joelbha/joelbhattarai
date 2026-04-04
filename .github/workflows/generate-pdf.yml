@@ -12,16 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # This gives your custom domain plenty of time to "wake up"
-      - name: Wait for DNS
-        run: sleep 60
-
-      - name: Generate PDF
-        uses: fershad/web-to-pdf-action@v1
-        with:
-          # Use the URLs that YOU confirmed work in your browser
-          url: "https://joelbhattarai.com/index.html"
-          output: "portfolio.pdf"
+      - name: Generate PDF via Docker
+        run: |
+          # We run a standard tool that doesn't require a separate 'uses' step
+          docker run --rm -v $PWD:/slides astefanutti/decktape generic \
+          --screenshots --screenshot-directory-name=screenshots \
+          https://joelbhattarai.com/index.html portfolio.pdf
 
       - name: Commit and Push PDF
         run: |
