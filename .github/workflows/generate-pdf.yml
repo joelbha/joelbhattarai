@@ -12,13 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Wait for GitHub Pages to deploy
-        run: sleep 60
-
       - name: HTML to PDF
         uses: misaelnieto/web_to_pdf_action@master
         with:
-         webPageURL: "file://$GITHUB_WORKSPACE/index.html file://$GITHUB_WORKSPACE/projects.html file://$GITHUB_WORKSPACE/documents.html file://$GITHUB_WORKSPACE/contact.html"
+          webPageURL: "file://${{ github.workspace }}/index.html file://${{ github.workspace }}/projects.html file://${{ github.workspace }}/documents.html file://${{ github.workspace }}/contact.html"
+          outputFile: "portfolio.pdf"
           usePuppeteer: true
 
       - name: Commit and Push PDF
