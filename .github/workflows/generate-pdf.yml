@@ -1,1 +1,28 @@
 
+name: Generate Portfolio PDF
+on:
+  push:
+    branches: [ main ] # Runs every time you push to the 'main' branch
+
+jobs:
+  generate-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Wait for GitHub Pages to deploy
+        run: sleep 30 # Gives the live site a moment to update
+
+      - name: PDF Generation
+        uses: pnowak/web-to-pdf-action@v1
+        with:
+          url: https://yourusername.github.io/full-portfolio # Point this to your print-page
+          targetfile: portfolio.pdf
+
+      - name: Commit and Push PDF
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add portfolio.pdf
+          git commit -m "Auto-update portfolio PDF" || echo "No changes to commit"
+          git push
