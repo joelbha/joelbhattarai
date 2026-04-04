@@ -19,7 +19,7 @@ jobs:
         uses: misaelnieto/web_to_pdf_action@master
         with:
           # Add all your page URLs here, separated by a space
-          webPageURL: "https://joelbha.github.io/index.html https://joelbha.github.io/projects.html https://joelbha.github.io/documents.html https://joelbha.github.io/contact.html"
+          webPageURL: "https://joelbhattarai.com/index.html https://joelbhattarai.com/projects.html https://joelbhattarai.com/documents.html https://joelbhattarai.com/contact.html"
           outputFile: portfolio.pdf
           usePuppeteer: true
 
