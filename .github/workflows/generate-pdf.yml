@@ -19,8 +19,7 @@ jobs:
         uses: misaelnieto/web_to_pdf_action@master
         with:
           # Add all your page URLs here, separated by a space
-          webPageURL: "https://joelbhattarai.com/index.html https://joelbhattarai.com/projects.html https://joelbhattarai.com/documents.html https://joelbhattarai.com/contact.html"
-          outputFile: portfolio.pdf
+         webPageURL: "file://$GITHUB_WORKSPACE/index.html file://$GITHUB_WORKSPACE/projects.html file://$GITHUB_WORKSPACE/documents.html file://$GITHUB_WORKSPACE/contact.html"
           usePuppeteer: true
 
       - name: Commit and Push PDF
