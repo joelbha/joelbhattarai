@@ -12,12 +12,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Wait for Pages to be ready
+        run: sleep 30
+
       - name: HTML to PDF
         uses: misaelnieto/web_to_pdf_action@master
         with:
-          webPageURL: "file://${{ github.workspace }}/index.html file://${{ github.workspace }}/projects.html file://${{ github.workspace }}/documents.html file://${{ github.workspace }}/contact.html"
-          outputFile: "portfolio.pdf"
+          # Using the URLs you confirmed are working
+          webPageURL: "https://joelbhattarai.com/index.html https://joelbhattarai.com/projects.html https://joelbhattarai.com/documents.html https://joelbhattarai.com/contact.html"
+          outputFile: portfolio.pdf
           usePuppeteer: true
+          # This helps prevent the 404/Timeout errors
+          pdfOptions: '{"timeout": 60000, "waitUntil": "networkidle0"}'
 
       - name: Commit and Push PDF
         run: |
