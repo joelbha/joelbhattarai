@@ -1,23 +1,23 @@
-
 name: Generate Portfolio PDF
 on:
   push:
-    branches: [ main ] # Runs every time you push to the 'main' branch
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   generate-pdf:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Wait for GitHub Pages to deploy
-        run: sleep 30 # Gives the live site a moment to update
-
-      - name: PDF Generation
-        uses: pnowak/web-to-pdf-action@v1
+      - name: Generate PDF from multiple URLs
+        uses: chaitanyapotti/url-to-pdf-action@v1.1.0
         with:
-          url: https://yourusername.github.io/full-portfolio # Point this to your print-page
-          targetfile: portfolio.pdf
+          # List all your pages here separated by a comma
+          url: https://joelbha.github.io/index.html, https://joelbha.github.io/projects.html, https://joelbha.github.io/documents.html, https://joelbha.github.io/contact.html
+          outputName: portfolio.pdf
 
       - name: Commit and Push PDF
         run: |
