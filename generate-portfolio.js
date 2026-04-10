@@ -1,8 +1,30 @@
 const puppeteer = require('puppeteer');
-const { exec } = require('child_process');
+const { exec, execSync } = require('child_process');
+const path = require('path');
+const fs = require('fs');
 
 const PORT = 8787;
 const OUTPUT_FILE = 'Joel_Bhattarai_Portfolio.pdf';
+const THUMB_DIR = path.join(__dirname, '_thumbs');
+
+function extractThumbnails() {
+    if (!fs.existsSync(THUMB_DIR)) fs.mkdirSync(THUMB_DIR);
+
+    const videos = fs.readdirSync(__dirname).filter(f => f.endsWith('.mp4'));
+    for (const video of videos) {
+        const src = path.join(__dirname, video);
+        const dest = path.join(THUMB_DIR, video.replace('.mp4', '.jpg'));
+        try {
+            execSync(
+                `ffmpeg -y -i "${src}" -ss 00:00:01 -frames:v 1 "${dest}"`,
+                { stdio: 'ignore' }
+            );
+            console.log(`Thumbnail: ${video} -> ${dest}`);
+        } catch (e) {
+            console.warn(`Could not extract thumbnail from ${video}`);
+        }
+    }
+}
 
 function startServer() {
     return new Promise((resolve, reject) => {
@@ -27,6 +49,7 @@ function startServer() {
 }
 
 (async () => {
+    extractThumbnails();
     const server = await startServer();
 
     try {
@@ -47,20 +70,20 @@ function startServer() {
             if (nav) nav.remove();
             document.body.style.paddingTop = '0';
 
+            const header = document.querySelector('.projects-header h1');
+            if (header) header.textContent = 'Project Portfolio';
+
             document.querySelectorAll('video').forEach((video) => {
-                const caption = video.closest('figure')?.querySelector('figcaption')?.textContent || '';
-                const placeholder = document.createElement('div');
-                placeholder.style.cssText = `
-                    width: 100%; height: 250px; border-radius: 15px;
-                    background: #e8e8e8; display: flex; align-items: center;
-                    justify-content: center; flex-direction: column; gap: 8px;
-                    color: #666; font-style: italic; font-size: 0.95rem;
-                `;
-                placeholder.innerHTML = `
-                    <span style="font-size: 2rem;">&#9654;</span>
-                    <span>Video — see live site for playback</span>
-                `;
-                video.replaceWith(placeholder);
+                const source = video.querySelector('source');
+                if (!source) return;
+                const videoFile = source.getAttribute('src').split('#')[0];
+                const thumbFile = '_thumbs/' + videoFile.replace('.mp4', '.jpg');
+
+                const img = document.createElement('img');
+                img.src = thumbFile;
+                img.alt = video.closest('figure')?.querySelector('figcaption')?.textContent || '';
+                img.style.cssText = 'width:100%; border-radius:15px; object-fit:contain;';
+                video.replaceWith(img);
             });
         });
 
@@ -75,10 +98,28 @@ function startServer() {
                     padding: 20px 40px !important;
                     margin: 0 !important;
                 }
-                .project-card {
-                    margin-bottom: 60px !important;
+                .project-card,
+                .project-card:nth-child(even) {
+                    flex-direction: row !important;
+                    align-items: center;
+                    gap: 30px;
+                    margin-bottom: 50px !important;
                     page-break-inside: avoid;
                     break-inside: avoid;
+                }
+                .project-image {
+                    flex: 0 0 35% !important;
+                    max-width: 300px !important;
+                }
+                .project-image img,
+                .project-image figure img {
+                    height: auto !important;
+                    max-height: 220px;
+                }
+                .project-content {
+                    flex: 1 !important;
+                    max-width: none !important;
+                    text-align: left !important;
                 }
                 .btn {
                     color: #232931 !important;
@@ -102,6 +143,7 @@ function startServer() {
         } catch (_) {
             server.kill();
         }
+        fs.rmSync(THUMB_DIR, { recursive: true, force: true });
         process.exit(0);
     }
 })();
