@@ -10,6 +10,7 @@ const THUMB_DIR = path.join(__dirname, '_thumbs');
 function extractThumbnails() {
     if (!fs.existsSync(THUMB_DIR)) fs.mkdirSync(THUMB_DIR);
 
+    const thumbMap = {};
     const videos = fs.readdirSync(__dirname).filter(f => f.endsWith('.mp4'));
     for (const video of videos) {
         const src = path.join(__dirname, video);
@@ -19,11 +20,14 @@ function extractThumbnails() {
                 `ffmpeg -y -ss 00:00:01 -i "${src}" -frames:v 1 "${dest}"`,
                 { stdio: 'ignore' }
             );
-            console.log(`Thumbnail: ${video} -> ${dest}`);
+            const b64 = fs.readFileSync(dest).toString('base64');
+            thumbMap[video] = `data:image/jpeg;base64,${b64}`;
+            console.log(`Thumbnail extracted: ${video}`);
         } catch (e) {
             console.warn(`Could not extract thumbnail from ${video}`);
         }
     }
+    return thumbMap;
 }
 
 function startServer() {
@@ -49,7 +53,7 @@ function startServer() {
 }
 
 (async () => {
-    extractThumbnails();
+    const thumbMap = extractThumbnails();
     const server = await startServer();
 
     try {
@@ -65,7 +69,7 @@ function startServer() {
             timeout: 30000
         });
 
-        await page.evaluate(() => {
+        await page.evaluate((thumbnails) => {
             const nav = document.querySelector('nav');
             if (nav) nav.remove();
             document.body.style.paddingTop = '0';
@@ -77,17 +81,19 @@ function startServer() {
                 const source = video.querySelector('source');
                 if (!source) return;
                 const videoFile = source.getAttribute('src').split('#')[0];
-                const thumbFile = '_thumbs/' + videoFile.replace('.mp4', '.jpg');
+                const dataUri = thumbnails[videoFile];
 
-                const img = document.createElement('img');
-                img.src = thumbFile;
-                img.alt = video.closest('figure')?.querySelector('figcaption')?.textContent || '';
-                img.style.cssText = 'width:100%; border-radius:15px; object-fit:contain;';
-                video.replaceWith(img);
+                if (dataUri) {
+                    const img = document.createElement('img');
+                    img.src = dataUri;
+                    img.alt = video.closest('figure')?.querySelector('figcaption')?.textContent || '';
+                    img.style.cssText = 'width:100%; border-radius:15px; object-fit:contain;';
+                    video.replaceWith(img);
+                } else {
+                    video.remove();
+                }
             });
-        });
-
-        await page.waitForNetworkIdle({ idleTime: 500, timeout: 15000 });
+        }, thumbMap);
 
         await page.addStyleTag({
             content: `
