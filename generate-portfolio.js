@@ -6,15 +6,21 @@ const OUTPUT_FILE = 'Joel_Bhattarai_Portfolio.pdf';
 
 function startServer() {
     return new Promise((resolve, reject) => {
-        const server = exec(`npx serve -l ${PORT} -s --no-clipboard`, { cwd: __dirname });
+        const server = exec(
+            `npx serve -l ${PORT} --no-clipboard`,
+            { cwd: __dirname, detached: true }
+        );
 
-        server.stderr.on('data', (data) => {
-            if (data.includes('Accepting connections')) {
+        const tryResolve = (data) => {
+            if (data.includes('Accepting connections') || data.includes(String(PORT))) {
                 resolve(server);
             }
-        });
+        };
 
-        setTimeout(() => resolve(server), 3000);
+        server.stdout.on('data', tryResolve);
+        server.stderr.on('data', tryResolve);
+
+        setTimeout(() => resolve(server), 4000);
 
         server.on('error', reject);
     });
@@ -91,6 +97,11 @@ function startServer() {
         console.log(`Portfolio PDF generated: ${OUTPUT_FILE}`);
         await browser.close();
     } finally {
-        server.kill();
+        try {
+            process.kill(-server.pid);
+        } catch (_) {
+            server.kill();
+        }
+        process.exit(0);
     }
 })();
