@@ -16,7 +16,7 @@ function extractThumbnails() {
         const dest = path.join(THUMB_DIR, video.replace('.mp4', '.jpg'));
         try {
             execSync(
-                `ffmpeg -y -i "${src}" -ss 00:00:01 -frames:v 1 "${dest}"`,
+                `ffmpeg -y -ss 00:00:01 -i "${src}" -frames:v 1 "${dest}"`,
                 { stdio: 'ignore' }
             );
             console.log(`Thumbnail: ${video} -> ${dest}`);
@@ -86,6 +86,8 @@ function startServer() {
                 video.replaceWith(img);
             });
         });
+
+        await page.waitForNetworkIdle({ idleTime: 500, timeout: 15000 });
 
         await page.addStyleTag({
             content: `
