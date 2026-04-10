@@ -10,6 +10,14 @@ const THUMB_DIR = path.join(__dirname, '_thumbs');
 function extractThumbnails() {
     if (!fs.existsSync(THUMB_DIR)) fs.mkdirSync(THUMB_DIR);
 
+    try {
+        const version = execSync('ffmpeg -version', { encoding: 'utf8' }).split('\n')[0];
+        console.log(`ffmpeg found: ${version}`);
+    } catch (e) {
+        console.error('ffmpeg is not installed or not in PATH');
+        return {};
+    }
+
     const thumbMap = {};
     const videos = fs.readdirSync(__dirname).filter(f => f.endsWith('.mp4'));
     for (const video of videos) {
@@ -17,14 +25,19 @@ function extractThumbnails() {
         const dest = path.join(THUMB_DIR, video.replace('.mp4', '.jpg'));
         try {
             execSync(
-                `ffmpeg -y -ss 00:00:01 -i "${src}" -frames:v 1 "${dest}"`,
-                { stdio: 'ignore' }
+                `ffmpeg -y -i "${src}" -frames:v 1 -q:v 2 "${dest}" 2>&1`,
+                { encoding: 'utf8', timeout: 30000 }
             );
-            const b64 = fs.readFileSync(dest).toString('base64');
-            thumbMap[video] = `data:image/jpeg;base64,${b64}`;
-            console.log(`Thumbnail extracted: ${video}`);
+            if (fs.existsSync(dest) && fs.statSync(dest).size > 0) {
+                const b64 = fs.readFileSync(dest).toString('base64');
+                thumbMap[video] = `data:image/jpeg;base64,${b64}`;
+                console.log(`Thumbnail extracted: ${video} (${Math.round(b64.length / 1024)}KB)`);
+            } else {
+                console.warn(`ffmpeg produced empty file for ${video}`);
+            }
         } catch (e) {
-            console.warn(`Could not extract thumbnail from ${video}`);
+            console.error(`Failed to extract thumbnail from ${video}:`);
+            console.error(e.stdout || e.stderr || e.message);
         }
     }
     return thumbMap;
