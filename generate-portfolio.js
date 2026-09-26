@@ -92,11 +92,11 @@ function startServer() {
             const linkSubheading = document.createElement('p');
                 linkSubheading.style.cssText = 'margin-top: 5px; margin-bottom: 20px; font-size: 1rem; color: #4ecca3;';
                 
-                const link = document.createElement('a');
-                link.href = 'https://joelbhattarai.com/projects.html';
-                link.textContent = 'joelbhattarai.com/projects.html';
-                link.style.cssText = 'color: inherit; text-decoration: none;';
-
+               const link = document.createElement('a');
+               link.href = 'https://joelbhattarai.com/projects.html';
+               link.textContent = 'joelbhattarai.com/projects.html';
+               link.style.cssText = 'color: #0066cc; text-decoration: underline;';
+            
                 linkSubheading.appendChild(link);
                 header.insertAdjacentElement('afterend', linkSubheading);
 
